@@ -6,23 +6,6 @@ const figlet = require('figlet');
 const chalk = require('chalk');
 
 
-// const next_game = (cb) => {
-//   const nextMenu = () => {
-//     console.log(figlet(` Next pokemon?`));
-//     console.log(chalk.cyan('1. Play Who\'s that pokemon?'));
-//     console.log(chalk.cyan('2. Quit'));
-//   }
-//   nextMenu()
-//   let choice = () => readline.questionInt('> ');
-//   if(choice===1){
-//     cb(next_game)
-//   }
-//   else {
-//     console.log(chalk.bgRed('Your journey has come to an end, unfortunately.'))
-//     process.exit()
-//   }
-// }
-
 const menu = (cb) => {
 
 // Get User Name

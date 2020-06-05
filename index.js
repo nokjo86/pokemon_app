@@ -16,12 +16,11 @@ const next_game = (cb) => {
     }
     console.log(data)
     }); 
-    console.log(chalk.cyan('1. Continue'));
-    console.log(chalk.cyan('2. Quit'))
   }
   nextMenu()
-  let choice = readline.question('> ');
-  if(choice==="1"){
+    let options = [chalk.cyan('Continue'), chalk.cyan('Quit')]
+    let choice = readline.keyInSelect(options,'> ');
+  if(choice===0){
     console.clear()
     cb(next_game)
 
@@ -59,7 +58,6 @@ let pokemons=[]
 const guessPokemon = (array) => {
     
     let chosenPokemon = array[Math.floor(Math.random() * 4)]
-    // console.log(chosenPokemon.name)
     array.forEach(pokemon => {
       pokemons.push(_.capitalize(pokemon.name))
     })
@@ -68,23 +66,29 @@ const guessPokemon = (array) => {
           let answer = readline.keyInSelect(pokemons, "Who's that Pokemon?");
       if (answer === correct_answer) {
           console.log(chalk.green("Correct!"));
+          setTimeout(function(){
           console.clear()
           cb(quiz)
+          }, 2000);
       } else {
           console.log(`Type: ${chosenPokemon.types[0].type.name}`);
           answer = readline.keyInSelect(pokemons, "Who's that Pokemon?");
-      if (answer === correct_answer) {
-          console.log(chalk.green("Correct!"));
-          console.clear()
-          cb(quiz)
+        if (answer === correct_answer) {
+            console.log(chalk.green("Correct!"));
+            setTimeout(function(){
+            console.clear()
+            cb(quiz)
+            }, 2000);
           } else {
               console.log(chalk.red("Wrong, guess again. Hint as below:"));
               console.log(chalk.yellowBright(`Move: ${chosenPokemon.moves[0].move.name}`));
               let answer = readline.keyInSelect(pokemons, "Who's that Pokemon?");
               if (answer === correct_answer) {
                 console.log(chalk.green("Correct!"));
+                setTimeout(function(){
                 console.clear()
                 cb(quiz)
+                }, 2000);
               } else {
                 console.log(chalk.red(`Wrong, Game Over! The correct answer is ${chalk.green(_.capitalize(chosenPokemon.name))}`));
               }
